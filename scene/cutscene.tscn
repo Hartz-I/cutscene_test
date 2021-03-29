@@ -1,0 +1,144 @@
+[gd_scene load_steps=32 format=2]
+
+[ext_resource path="res://tiles and background_foreground/background.png" type="Texture" id=1]
+[ext_resource path="res://Gino Character/PNG/Idle, run, jump/run02.png" type="Texture" id=2]
+[ext_resource path="res://Gino Character/PNG/Idle, run, jump/run03.png" type="Texture" id=3]
+[ext_resource path="res://Gino Character/PNG/Idle, run, jump/run04.png" type="Texture" id=4]
+[ext_resource path="res://Gino Character/PNG/Idle, run, jump/run05.png" type="Texture" id=5]
+[ext_resource path="res://Gino Character/PNG/Idle, run, jump/run06.png" type="Texture" id=6]
+[ext_resource path="res://Gino Character/PNG/Idle, run, jump/run07.png" type="Texture" id=7]
+[ext_resource path="res://Gino Character/PNG/Idle, run, jump/run01.png" type="Texture" id=8]
+[ext_resource path="res://Gino Character/PNG/Idle, run, jump/run08.png" type="Texture" id=9]
+[ext_resource path="res://Gino Character/PNG/Attacks/AttackA04.png" type="Texture" id=10]
+[ext_resource path="res://Gino Character/PNG/Attacks/AttackA01.png" type="Texture" id=11]
+[ext_resource path="res://Gino Character/PNG/Attacks/AttackA06.png" type="Texture" id=12]
+[ext_resource path="res://Gino Character/PNG/Attacks/AttackA03.png" type="Texture" id=13]
+[ext_resource path="res://Gino Character/PNG/Attacks/AttackA07.png" type="Texture" id=14]
+[ext_resource path="res://Gino Character/PNG/Attacks/AttackA05.png" type="Texture" id=15]
+[ext_resource path="res://Gino Character/PNG/Attacks/AttackA02.png" type="Texture" id=16]
+[ext_resource path="res://tiles and background_foreground/bg_2.png" type="Texture" id=17]
+[ext_resource path="res://scene/cutscene.gd" type="Script" id=18]
+[ext_resource path="res://Gino Character/PNG/Idle, run, jump/idle02.png" type="Texture" id=19]
+[ext_resource path="res://Gino Character/PNG/Idle, run, jump/idle04.png" type="Texture" id=20]
+[ext_resource path="res://Gino Character/PNG/Idle, run, jump/idle03.png" type="Texture" id=21]
+[ext_resource path="res://Gino Character/PNG/Idle, run, jump/idle07.png" type="Texture" id=22]
+[ext_resource path="res://Gino Character/PNG/Idle, run, jump/idle06.png" type="Texture" id=23]
+[ext_resource path="res://Gino Character/PNG/Idle, run, jump/idle05.png" type="Texture" id=24]
+[ext_resource path="res://Gino Character/PNG/Idle, run, jump/idle01.png" type="Texture" id=25]
+[ext_resource path="res://Gino Character/PNG/Idle, run, jump/idle09.png" type="Texture" id=26]
+[ext_resource path="res://Gino Character/PNG/Idle, run, jump/idle08.png" type="Texture" id=27]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 508.375, 70.8637 )
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 25 ), ExtResource( 19 ), ExtResource( 21 ), ExtResource( 20 ), ExtResource( 24 ), ExtResource( 23 ), ExtResource( 22 ), ExtResource( 27 ), ExtResource( 26 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "run",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ), ExtResource( 16 ), ExtResource( 13 ), ExtResource( 10 ), ExtResource( 15 ), ExtResource( 12 ), ExtResource( 14 ) ],
+"loop": true,
+"name": "attack",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 16.9532, 31.187 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "move right and hit"
+length = 10.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("KinematicBody2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4, 7 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 200, 439 ), Vector2( 500, 439 ), Vector2( 500, 439 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 4, 5.6, 7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "run"
+}, {
+"args": [  ],
+"method": "attack"
+}, {
+"args": [  ],
+"method": "idle"
+}, {
+"args": [  ],
+"method": "rev_run"
+} ]
+}
+
+[node name="cutscene" type="Node2D"]
+script = ExtResource( 18 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="ParallaxBackground"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 1 )
+expand = true
+stretch_mode = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect2" type="TextureRect" parent="ParallaxBackground"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 17 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StaticBody2D" type="StaticBody2D" parent="ParallaxBackground/TextureRect2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParallaxBackground/TextureRect2/StaticBody2D"]
+position = Vector2( 512.611, 562.766 )
+shape = SubResource( 2 )
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+position = Vector2( 500, 439 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="KinematicBody2D"]
+scale = Vector2( 2, 2 )
+frames = SubResource( 1 )
+animation = "idle"
+frame = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+position = Vector2( -18.5206, 24.1329 )
+shape = SubResource( 3 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "move right and hit"
+"anims/move right and hit" = SubResource( 4 )
+[connection signal="animation_finished" from="KinematicBody2D/AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
